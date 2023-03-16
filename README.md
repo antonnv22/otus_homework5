@@ -48,14 +48,15 @@ kubectl get all --namespace backend
 ![APP](pic/pic8.jpg)
 Пытаемся редактировать 1 го пользователя без логина получаем ошибку :
 ![APP](pic/pic9.jpg)
-Логинимся под 1 пользователем
+Логинимся под 1 пользователем:
 ![APP](pic/pic10.jpg)
 Редактируем 1 пользователя с его токеном :
 ![APP](pic/pic11.jpg)
-Регистрируем 2 го пользователя :
+Получаем данные 1 го пользователя с его токеном :
 ![APP](pic/pic12.jpg)
-
+Регистрируем 2 го пользователя :
 ![APP](pic/pic13.jpg)
+Логинимся под 2 пользователем :
 ![APP](pic/pic14.jpg)
 Редактируем данные 1 го пользователя с токеном 2 го пользователя и получаем ошибку:
 ![APP](pic/pic15.jpg)
@@ -66,4 +67,11 @@ kubectl get all --namespace backend
 
 
 ### Схема работы
-![Map](screenshot.png)
+![Map](pic/pic1.jpg)
+![Map](pic/pic2.jpg)
+![Map](pic/pic3.jpg)
+![Map](pic/pic4.jpg)
+![Map](pic/pic5.jpg)
+![Map](pic/pic6.jpg)
+![Map](pic/pic7.jpg)
+
