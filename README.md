@@ -1,6 +1,3 @@
-# otus_homework5
-otus_homework5
-
 # Домашнее задание #5
 ## Backend for frontends. Apigateway
 
@@ -36,7 +33,7 @@ otus_homework5
 ```
 Деплоим posgres
 templates\deployPostgre.sh
-Ждем завершения деплоя postgre и деплоим бэкенд
+Ждем завершения деплоя postgres и деплоим бэкенд
 templates\deploy.sh
 ```
 ### Проверяем результат
@@ -45,8 +42,19 @@ kubectl get all --namespace backend
 ```
 ![APP](pic/pic0.jpg)
 
-### Протестировать
-otus.postman_collection.json
+### Протестируем сервис
+Коллекиция для тестов - otus.postman_collection.json и результаты проверки сервиса
+![APP](pic/pic8.jpg)
+![APP](pic/pic9.jpg)
+![APP](pic/pic10.jpg)
+![APP](pic/pic11.jpg)
+![APP](pic/pic12.jpg)
+![APP](pic/pic13.jpg)
+![APP](pic/pic14.jpg)
+![APP](pic/pic15.jpg)
+![APP](pic/pic16.jpg)
+![APP](pic/pic17.jpg)
+
 
 ### Схема работы
 ![Map](screenshot.png)
