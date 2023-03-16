@@ -30,20 +30,20 @@ otus_homework5
 наличие {{baseUrl}} для урла
 использование домена arch.homework в качестве initial значения {{baseUrl}}
 использование сгенерированных случайно данных в сценарии
-отображение данных запроса и данных ответа при запуске из командной строки с помощью newman.
+отображение данных запроса и данных ответа при запуске из командной строки с помощью postman.
 
 ## Установка
 ```
 Деплоим posgres
 templates\deployPostgre.sh
-Деплоим бэк
+Ждем завершения деплоя postgre и деплоим бэкенд
 templates\deploy.sh
 ```
-### Проверка
+### Проверяем результат
 ```
-kubectl get all --namespace default
+kubectl get all --namespace backend
 ```
-![CRUDAPP](screenshot1.png)
+![APP](pic/pic0.jpg)
 
 ### Протестировать
 otus.postman_collection.json
