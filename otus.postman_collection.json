@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "a69bdb9a-4a55-4519-a34d-c25394991a7a",
+		"name": "otus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14564116"
+	},
+	"item": [
+		{
+			"name": "gateway",
+			"item": [
+				{
+					"name": "signUpFirstUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"userId\", jsonData.id);",
+									"",
+									"pm.test(\"Sign up fist user status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"firstUser\",\n    \"firstName\": \"firstUser\",\n    \"lastName\": \"firstUser\",\n    \"email\": \"firstUser@yandex.ru\",\n    \"phone\": \"89001999487\",\n    \"password\": \"473292\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.27.56:31029/signUp",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"27",
+								"56"
+							],
+							"port": "31029",
+							"path": [
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit First User Before Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edit fist user befor login status is 401\", function () {",
+									"    pm.response.to.be.unauthorized;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"login\": \"firstUser\",\n    \"firstName\": \"firstUser\",\n    \"lastName\": \"firstUser\",\n    \"email\": \"firstUser@gmail.ru\",\n    \"phone\": \"89826708164\",\n    \"password\": \"473292\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.27.56:31029/users/update/firstUser",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"27",
+								"56"
+							],
+							"port": "31029",
+							"path": [
+								"users",
+								"update",
+								"firstUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login First User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"token\", jsonData.token);",
+									"",
+									"pm.test(\"Aftewr login fisrt user status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"firstUser\",\n    \"password\": \"473292\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.27.56:31029/login",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"27",
+								"56"
+							],
+							"port": "31029",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editFirstUserAfterLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"After editing fist user status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmaXJzdFVzZXIiLCJleHAiOjE2Nzg2NTc0MDl9.QAK30r5AVz21nfVwhxc7sw6te35VIaiYEAvKBc3-JL6y64msYptubfaItSOYQHYad7K_0n8-GPZX3onJiMX7IVBboMBbV4tZI5dc3LrzgUr3hxRi4as_MLY_Qh_1Y7u5UF_4Q1YvVIKbdbM4TS46CnfLBdcnfg8i-9kmIrLKPeG6Du1mktP3ORRHm5zz3ODSrt1rW4TvWurCHLmoydGPU74BnV50o1JQpZK37z7Jc38NuRouYbqDuiuoinF1TPwqA3xICkwtlmViIXWgk7GWUerrfqaFf9DQZ1qELo1cl1CCua8oywAcmC9iWSr8ndlqjoeoriibAVPD9xclmGFztw}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{userId}},\n    \"login\": \"firstUser\",\n    \"firstName\": \"firstUser\",\n    \"lastName\": \"firstUser\",\n    \"email\": \"firstUser@gmail.ru\",\n    \"phone\": \"89826708164\",\n    \"password\": \"473292\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.27.56:31029/users/update/firstUser",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"27",
+								"56"
+							],
+							"port": "31029",
+							"path": [
+								"users",
+								"update",
+								"firstUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get First User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"email of first user was changed\", function () {",
+									"    pm.expect(\"firstUser@gmail.ru\").to.equal(",
+									"        pm.response.json().email",
+									"    );",
+									"});",
+									"",
+									"pm.test(\"phone of first user was changed\", function () {",
+									"    pm.expect(\"89826708164\").to.equal(",
+									"        pm.response.json().phone",
+									"    );",
+									"});",
+									"",
+									"pm.test(\"After getting fist user status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://172.28.27.56:31029/users/firstUser",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"27",
+								"56"
+							],
+							"port": "31029",
+							"path": [
+								"users",
+								"firstUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUpSecondUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"secondUser\",\n    \"firstName\": \"secondUser\",\n    \"lastName\": \"secondUser\",\n    \"email\": \"secondUser@yandex.ru\",\n    \"phone\": \"89001999488\",\n    \"password\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://arch.homework:7002/signUp",
+							"protocol": "http",
+							"host": [
+								"arch",
+								"homework"
+							],
+							"port": "7002",
+							"path": [
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginSecondUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"token\", jsonData.token);",
+									"",
+									"pm.test(\"Aftewr login sesonc user status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"secondUser\",\n    \"password\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://arch.homework:7002/login",
+							"protocol": "http",
+							"host": [
+								"arch",
+								"homework"
+							],
+							"port": "7002",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit First User After Second Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"First user is trying to edit fist user so status is 403\", function () {",
+									"    pm.response.to.be.forbidden;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{userId}},\n    \"login\": \"firstUser\",\n    \"firstName\": \"firstUser\",\n    \"lastName\": \"firstUser\",\n    \"email\": \"firstUser@yandex.ru\",\n    \"phone\": \"89826708164\",\n    \"password\": \"473292\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://arch.homework:7002/users/update/firstUser",
+							"protocol": "http",
+							"host": [
+								"arch",
+								"homework"
+							],
+							"port": "7002",
+							"path": [
+								"users",
+								"update",
+								"firstUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get First User After Second Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"First user is trying to get fist user so status is 403\", function () {",
+									"    pm.response.to.be.forbidden;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://arch.homework:7002/users/firstUser",
+							"protocol": "http",
+							"host": [
+								"arch",
+								"homework"
+							],
+							"port": "7002",
+							"path": [
+								"users",
+								"firstUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Second User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

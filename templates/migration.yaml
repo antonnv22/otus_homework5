@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrationmain
+  namespace: postgres
+  labels:
+    app: job
+spec:
+  template:
+    metadata:
+      name: migration
+      labels:
+        app: job
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: insert
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: otus-app-config
+                  key: rds-host-name
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: otus-app-config
+                  key: rds-user-name
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: otus-app-config
+                  key: rds-db-name
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: otus-app-secrets
+                  key: psqluserpass
+          image: postgres:11
+          command:
+            - sh
+            - "-c"
+            - |
+              PGPASSWORD=$PASSWORD psql -d $DATABASE -U $DB_USER -h $DATABASE_URI  <<'EOF'
+              CREATE DATABASE users;
+              CREATE SCHEMA users;
+              EOF
+  backoffLimit: 0

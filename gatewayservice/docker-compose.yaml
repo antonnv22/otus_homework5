@@ -1,0 +1,14 @@
+version: '3'
+services:
+  gatewayservice:
+    container_name: gatewayservice
+    image: antonnv22/gatewayservice:0.0.2
+    networks:
+      - profilenetwork
+    restart: always
+    ports:
+      - "8002:8002"
+    environment:
+      PROFILE_SERIVCE_URL: profileservice:7000
+networks:
+  profilenetwork:
