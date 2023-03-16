@@ -44,9 +44,13 @@ kubectl get all --namespace backend
 
 ### Протестируем сервис
 Коллекиция для тестов - otus.postman_collection.json и результаты проверки сервиса
+Регистрируем 1 го пользователя :
 ![APP](pic/pic8.jpg)
+Регистрируем 1 го пользователя :
 ![APP](pic/pic9.jpg)
+Пытаемся редактировать 1 го пользователя без логина получаем ошибку :
 ![APP](pic/pic10.jpg)
+Логинимся под 1 пользователем
 ![APP](pic/pic11.jpg)
 ![APP](pic/pic12.jpg)
 ![APP](pic/pic13.jpg)
